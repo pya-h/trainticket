@@ -14,3 +14,6 @@ python manage.py makemigrations
 python manage.py migrate
 
 python manage.py runserver
+
+# Template:
+Original template is implemented by BeApp.
