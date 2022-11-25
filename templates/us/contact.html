@@ -1,0 +1,175 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block page %}
+        <section class="page">
+            <!-- ***** Page Top Start ***** -->
+            <div class="cover" data-image="{%  static 'images/photos/parallax.jpg' %}">
+                <div class="page-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1>Contact Us</h1>
+                            </div>
+                            <div class="col-lg-12">
+                                <ol class="breadcrumb">
+                                    <li><a href="../home.html">Home</a></li>
+                                    <li class="active">Contact Us</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Page Top End ***** -->
+
+            <!-- ***** Page Content Start ***** -->
+            <div class="page-bottom">
+                <div class="map-wrapper">
+                    <!-- ***** Google Maps Start ***** -->
+                    <div
+                        class="map-canvas"
+                        data-zoom="12"
+                        data-lat="35.7219"
+                        data-lng="51.3347"
+                        data-type="roadmap"
+                        data-hue="#ffc400"
+                        data-title="Train Ticket"
+                        data-icon-path="{% static 'images/marker.png'  %}"
+                        data-content="Tehran, Iran, whatever<br><br><a href='mailto:your@email.com'>mailto:your@email.com</a>"
+                    ></div>
+                    <!-- ***** Google Maps End ***** -->
+
+                    <!-- ***** Contact Informations Start ***** -->
+                    <div class="container position-relative">
+                        <div class="row">
+                            <div
+                                class="offset-lg-8 col-lg-4 col-md-12 col-sm-12"
+                            >
+                                <div class="contact-info">
+                                    <div class="item">
+                                        <i class="fa fa-location-arrow"></i>
+                                        <div class="txt">
+                                            <p>
+                                                Iran, Tehran<br />Your address
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <i class="fa fa-phone"></i>
+                                        <div class="txt">
+                                            <span>(123) 456-7890</span>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <i class="fa fa-envelope"></i>
+                                        <div class="txt">
+                                            <span
+                                                ><a href="mailto:your@emial.com"
+                                                    >your@email.com</a
+                                                ></span
+                                            >
+                                        </div>
+                                    </div>
+                                    <ul class="social">
+                                        <li>
+                                            <a href="#"
+                                                ><i
+                                                    class="fa fa-facebook-square"
+                                                ></i
+                                            ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                ><i
+                                                    class="fa fa-twitter-square"
+                                                ></i
+                                            ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                ><i
+                                                    class="fa fa-linkedin-square"
+                                                ></i
+                                            ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                ><i
+                                                    class="fa fa-google-plus-square"
+                                                ></i
+                                            ></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                ><i
+                                                    class="fa fa-github-square"
+                                                ></i
+                                            ></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ***** Contact Informations End ***** -->
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <!-- ***** Contact Text Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <h5 class="mbottom-30">What's on your mind?</h5>
+                            <div class="contact-text">
+                                <p>
+                                    From this section you can send us messages.
+                                    Share your point of view and ideas with us,
+                                    so we can improve our work.
+                                </p>
+                                <p>
+                                    The email you give us here, will be used to
+                                    send answers to you, if needed.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- ***** Contact Text End ***** -->
+
+                        <!-- ***** Contact Form Start ***** -->
+                        <div class="col-lg-8 col-md-6 col-sm-12">
+                            <div class="contact-form">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12">
+                                        <input
+                                            type="text"
+                                            placeholder="Fullname"
+                                        />
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12">
+                                        <input
+                                            type="text"
+                                            placeholder="Email"
+                                        />
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <textarea
+                                            placeholder="Talk to us..."
+                                        ></textarea>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <button
+                                            class="btn btn-outline-success btn-large btn-block w-25"
+                                            style="float: right"
+                                        >
+                                            SEND
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ***** Contact Form End ***** -->
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Page Content End ***** -->
+        </section>
+
+{% endblock %}
