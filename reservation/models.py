@@ -14,9 +14,9 @@ class Train(models.Model):
 
 class Person(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=128)
     age = models.IntegerField()
-    gender = models.CharField(max_length=50)
-    email = models.EmailField(max_length=254)
-    booking_datetime = models.DateTimeField(auto_now_add=True)
+    gender = models.CharField(max_length=10)
+    email = models.EmailField(max_length=384)
+    booking_datetime = models.DateTimeField(auto_now_add=True)  # check this!
     train = models.ForeignKey(Train, on_delete=models.CASCADE)

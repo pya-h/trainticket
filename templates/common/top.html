@@ -14,9 +14,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <nav class="main-nav" style="float: left">
-                    <ul class="nav">
+                <nav class="main-nav" >
+                    <ul class="nav" style="float: right">
+                        <li><a href="{% url 'registerform' %}">REGISTER</a></li>
+                        <li><a href="{% url 'loginform' %}">LOGIN</a></li>
+
+                    </ul>
+                    <ul class="nav" style="float: left">
                         <li><a href="{% url 'home' %}">HOME</a></li>
+
                         <li><a href="{% url 'about-us' %}">ABOUT US</a></li>
                         <li>
                             <a href="{% url 'contact-us' %}" class="btn-nav-line">CONTACT</a>

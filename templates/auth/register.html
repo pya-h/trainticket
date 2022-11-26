@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block page %}
+        <section class="page">
+            <!-- ***** Page Top Start ***** -->
+            <div class="cover" data-image="{%  static 'images/photos/parallax.jpg' %}">
+                <div class="page-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1>Contact Us</h1>
+                            </div>
+                            <div class="col-lg-12">
+                                <ol class="breadcrumb">
+                                    <li><a href="{% url 'home' %}">Home</a></li>
+                                    <li class="active">Register</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Page Top End ***** -->
+
+            <!-- ***** Page Content Start ***** -->
+            <div class="page-bottom">
+
+
+                <div class="container">
+                    <div class="row">
+                        <!-- ***** Contact Text Start ***** -->
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <h5 class="mbottom-30">New on TicketTrain?</h5>
+                            <div class="contact-text">
+                                <p>
+                                    From this section you can register as a user and then start to use our services, such as buying tickets
+                                </p>
+                            </div>
+                            <hr />
+                            <h5 class="mbottom-30">Registered before?</h5>
+                            <div class="contact-text">
+                                <p>
+                                    Then you can login to your account from <a href="{% url 'loginform' %}">Here</a>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- ***** Contact Text End ***** -->
+
+                        <!-- ***** Contact Form Start ***** -->
+                        <div class="col-lg-8 col-md-6 col-sm-12">
+                            <form action="{% url 'register' %}" method="post">
+                                {% csrf_token %}
+                                <div class="compact-form">
+                                    <div class="row">
+                                        <div class="row">
+                                            <label>
+                                                Name:
+                                                <input
+                                                    type="text" name="name"
+                                                    placeholder="Enter your name"
+                                                />
+                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <label>
+                                                E-Mail:
+                                                <input
+                                                    type="email" name="email"
+                                                    placeholder="Enter your e-mail"
+                                                />
+                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <label>
+                                                Password
+                                                <input type="password" name="password"
+                                                    placeholder="Enter your password" />
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-12 text-center">
+                                            <button type="submit"
+                                                class="btn-success btn btn-lg btn-block w-50"
+                                            >
+                                                REGISTER
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- ***** Contact Form End ***** -->
+                    </div>
+                </div>
+            </div>
+            <!-- ***** Page Content End ***** -->
+        </section>
+
+{% endblock %}

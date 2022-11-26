@@ -30,7 +30,7 @@ def login(request):
 
 
 def registerform(request):
-    return render(request, './register.html')
+    return render(request, 'auth/register.html')
 
 
 def register(request):
@@ -40,7 +40,7 @@ def register(request):
     context = {
         'msg': "Registeration Successsful"
     }
-    return render(request, './error.html', context)
+    return render(request, 'auth/register.html', context)
 
 
 def logout(request):
@@ -61,7 +61,8 @@ def trainform(request):
 
 def addtrain(request):
     l = Train(source=request.POST['source'], destination=request.POST['destination'],
-              time=request.POST['time'], seats_available=request.POST['seats_available'], train_name=request.POST['train_name'], price=request.POST['price'])
+              time=request.POST['time'], seats_available=request.POST['seats_available'],
+              train_name=request.POST['train_name'], price=request.POST['price'])
     l.save()
     return render(request, './error.html', {'msg': "Successfully Added"})
 
@@ -78,16 +79,19 @@ def train_id(request, train_id):
     }
     return render(request, './viewperson.html', context)
 
-temp={}
+
+temp = {}
+
+
 def book(request):
     global temp
     if request.user.is_authenticated:
         t = Train.objects.filter(
             source=request.POST['source'], destination=request.POST['destination'])
         if len(t):
-            temp['name']=request.POST['name']
-            temp['age']=request.POST['age']
-            temp['gender']=request.POST['gender']
+            temp['name'] = request.POST['name']
+            temp['age'] = request.POST['age']
+            temp['gender'] = request.POST['gender']
 
             return render(request, './trainsavailable.html', {'trains': t})
         else:
@@ -106,7 +110,7 @@ def booking(request, train_id):
     p.save()
     tt.save()
 
-    return render(request, './error.html', {'msg': "Booked Successfully...Price to be paid is "+str(tt.price)})
+    return render(request, './error.html', {'msg': "Booked Successfully...Price to be paid is " + str(tt.price)})
 
 
 def bookform(request):
@@ -120,7 +124,7 @@ def bookform(request):
     destinations = list(set(destinations))
 
     if request.user.is_authenticated:
-        return render(request, './booking.html', {'sources': sources, 'destinations':destinations})
+        return render(request, './booking.html', {'sources': sources, 'destinations': destinations})
     else:
         return render(request, './error.html', {'msg': "User not authenticated"})
 
