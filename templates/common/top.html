@@ -16,9 +16,13 @@
             <div class="col-lg-12">
                 <nav class="main-nav" >
                     <ul class="nav" style="float: right">
-                        <li><a href="{% url 'registerform' %}">REGISTER</a></li>
-                        <li><a href="{% url 'loginform' %}">LOGIN</a></li>
-
+                        {% if user.id is None %}
+                            <li><a href="{% url 'registerform' %}">REGISTER</a></li>
+                            <li><a href="{% url 'loginform' %}">LOGIN</a></li>
+                        {% else %}
+                            <li style="color:orangered; font-weight: bolder" class="mt-1">HI {{ user.username | upper}}</li>
+                            <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+                        {% endif %}
                     </ul>
                     <ul class="nav" style="float: left">
                         <li><a href="{% url 'home' %}">HOME</a></li>

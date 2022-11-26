@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from django.contrib import messages
 from .models import Train, Person
 
 
@@ -11,22 +12,21 @@ def index(request):
 
 
 def loginform(request):
-    return render(request, './login.html')
+    return render(request, 'auth/login.html')
 
 
 def login(request):
-    u = request.POST
-    user = authenticate(request, username=u['name'], password=u['password'])
-    if user is not None:
-        auth_login(request, user)
-        context = {
-            'msg': "Login Successsful"
-        }
-    else:
-        context = {
-            'msg': "Error User is not registered/invalid"
-        }
-    return render(request, './error.html', context)
+    try:
+        u = request.POST
+        user = authenticate(request, username=u['name'], password=u['password'])
+        if user is not None:
+            auth_login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, "Error User is not registered/invalid")
+    except Exception as ex:
+        messages.error(request, ex.__str__())
+    return render(request, 'auth/login.html')
 
 
 def registerform(request):
@@ -34,22 +34,19 @@ def registerform(request):
 
 
 def register(request):
-    user = request.POST
-    u = User.objects.create_user(user['name'], user['email'], user['password'])
-    u.save()
-    context = {
-        'msg': "Registeration Successsful"
-    }
-    return render(request, 'auth/register.html', context)
+    try:
+        user = request.POST
+        u = User.objects.create_user(user['name'], user['email'], user['password'])
+        u.save()
+        messages.success(request, 'Registration was successful!')
+    except Exception as ex:
+        messages.error(request, ex.__str__())
+    return render(request, 'auth/register.html')
 
 
 def logout(request):
     auth_logout(request)
-
-    context = {
-        'msg': "Logout Successful"
-    }
-    return render(request, './error.html', context)
+    return render(request, 'auth/login.html')
 
 
 def trainform(request):

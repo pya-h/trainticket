@@ -1,0 +1,23 @@
+<style>
+    #message {
+        transition: visibility 1s;
+        -webkit-transition: visibility 1s;
+    }
+</style>
+{% if messages %}
+    {% for msg in messages %}
+        <div id="message" class="mx-auto text-center">
+            <div style="min-height:60px; max-height:80px"
+                {% if msg.tags %}
+                    class=" mx-auto text-center alert alert-{{msg.tags}}"
+                {% endif %}
+                role="alert">
+                    <button class="close text-center bg-transparent mx-auto p-1" style="font-size:15px; border: none;" data-dismiss="alert">
+                        <span aria-hidden="true">
+                            {{ msg }}
+                        </span>
+                    </button>
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}

@@ -8,12 +8,12 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1>Register New Account</h1>
+                                <h1>Login To Your Account</h1>
                             </div>
                             <div class="col-lg-12">
                                 <ol class="breadcrumb">
                                     <li><a href="{% url 'home' %}">Home</a></li>
-                                    <li class="active">Register</li>
+                                    <li class="active">Login</li>
                                 </ol>
                             </div>
                         </div>
@@ -33,14 +33,14 @@
                             <h5 class="mbottom-30">New on TicketTrain?</h5>
                             <div class="contact-text">
                                 <p>
-                                    From this section you can register as a user and then start to use our services, such as buying tickets
+                                    From this section you can login to your account and continue to use our services, such as buying tickets
                                 </p>
                             </div>
                             <hr />
-                            <h5 class="mbottom-30">Registered before?</h5>
+                            <h5 class="mbottom-30">New to TrainTicket?</h5>
                             <div class="contact-text">
                                 <p>
-                                    Then you can login to your account from <a href="{% url 'loginform' %}">Here</a>
+                                    Then you can register a new account from <a href="{% url 'registerform' %}">Here</a>
                                 </p>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                         <!-- ***** Contact Form Start ***** -->
                         <div class="col-lg-8 col-md-6 col-sm-12">
                             {% include 'common/toast.html' %}
-                            <form action="{% url 'register' %}" method="post">
+                            <form action="{% url 'login' %}" method="post">
                                 {% csrf_token %}
                                 <div class="compact-form">
                                     <div class="row">
@@ -64,15 +64,6 @@
                                         </div>
                                         <div class="row">
                                             <label>
-                                                E-Mail:
-                                                <input required
-                                                    type="email" name="email"
-                                                    placeholder="Enter your e-mail"
-                                                />
-                                            </label>
-                                        </div>
-                                        <div class="row">
-                                            <label>
                                                 Password
                                                 <input type="password" name="password" required
                                                     placeholder="Enter your password" />
@@ -80,9 +71,9 @@
                                         </div>
                                         <div class="col-lg-12 text-center">
                                             <button type="submit"
-                                                class="btn-success btn btn-lg btn-block w-50"
+                                                class="btn-primary btn btn-lg btn-block w-50"
                                             >
-                                                REGISTER
+                                                Login
                                             </button>
                                         </div>
                                     </div>
