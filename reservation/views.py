@@ -6,11 +6,6 @@ from django.contrib import messages
 from .models import Train, Person
 
 
-def index(request):
-    lis = Train.objects.all()
-    return render(request, './viewtrains.html', {"lis": lis})
-
-
 def loginform(request):
     return render(request, 'auth/login.html')
 
@@ -49,33 +44,21 @@ def logout(request):
     return render(request, 'auth/login.html')
 
 
-def trainform(request):
-    if request.user.is_superuser:
-        return render(request, './addtrain.html')
-    else:
-        return render(request, './error.html', {'msg': "Not an Admin"})
-
-
-def addtrain(request):
-    l = Train(source=request.POST['source'], destination=request.POST['destination'],
-              time=request.POST['time'], seats_available=request.POST['seats_available'],
-              train_name=request.POST['train_name'], price=request.POST['price'])
-    l.save()
-    return render(request, './error.html', {'msg': "Successfully Added"})
-
-
-def train_id(request, train_id):
-    if not request.user.is_superuser:
-        return render(request, './error.html', {'msg': "Not an Admin"})
-
-    l = Train.objects.get(pk=train_id)
-    persons = l.person_set.all()
-    context = {
-        'train': l,
-        'persons': persons
-    }
-    return render(request, './viewperson.html', context)
-
+def get_train(request, train_id):
+    context = {}
+    try:
+        if not request.user.is_authenticated:
+            messages.warning(request, "You must login first to see this train info.")
+            return redirect('loginform')
+        train = Train.objects.get(pk=train_id)
+        persons = train.person_set.all()
+        context['train'] = train
+        context['persons'] = persons
+    except Train.DoesNotExist:
+        messages.error(request, "No such train or ticket!")
+    except Exception as ex:
+        messages.error(request, ex.__str__())
+    return render(request, 'ticket/train.html', context)
 
 temp = {}
 
@@ -92,9 +75,11 @@ def book(request):
 
             return render(request, './trainsavailable.html', {'trains': t})
         else:
-            return render(request, './error.html', {'msg': "Not Found"})
+            messages.error(request, "Not Found")
+            return redirect('home')
     else:
-        return render(request, './error.html', {'msg': "Not a valid user. Please Login to continue"})
+        messages.error(request, "This is not a valid account! You must login first!")
+        return redirect('loginform')
 
 
 def booking(request, train_id):
@@ -106,8 +91,8 @@ def booking(request, train_id):
     p = Person(train=tt, name=temp['name'], email=request.user.email, age=temp['age'], gender=temp['gender'])
     p.save()
     tt.save()
-
-    return render(request, './error.html', {'msg': "Booked Successfully...Price to be paid is " + str(tt.price)})
+    messages.success(request, "Booked Successfully...Price to be paid is " + str(tt.price))
+    return redirect('home')
 
 
 def bookform(request):
@@ -123,7 +108,8 @@ def bookform(request):
     if request.user.is_authenticated:
         return render(request, './booking.html', {'sources': sources, 'destinations': destinations})
     else:
-        return render(request, './error.html', {'msg': "User not authenticated"})
+        messages.error(request, "You must login first!")
+        return redirect('loginform')
 
 
 def mybooking(request):
@@ -131,4 +117,5 @@ def mybooking(request):
         p = Person.objects.filter(email=request.user.email)
         return render(request, './mybooking.html', {'persons': p})
     else:
-        return render(request, './error.html', {'msg': "User not authenticated"})
+        messages.error(request, "You must login first!")
+        return redirect('loginform')

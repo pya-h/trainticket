@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block page %}
+<section class="page">
+		<!-- ***** Page Top Start ***** -->
+		<div class="cover" data-image="assets/images/photos/parallax.jpg">
+			<div class="page-top">
+				<div class="container">
+					<div class="row">
+                        <div class="col-lg-12">
+                            <ol class="breadcrumb">
+                                <li><a href="{% url 'home' %}">Home</a></li>
+                                <li class="active">{{ train.name }}</li>
+                            </ol>
+                        </div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="page-bottom pbottom-70">
+			<div class="container">
+				<div class="row">
+                    {% include 'common/toast.html' %}
+					<!-- ***** Content Start ***** -->
+					<div class="col-lg-8 col-md-12 col-sm-12">
+
+                        {% if train.image %}
+                            <div class="row page-gallery-wrapper">
+                                <div class="col-lg-6 col-md-4 col-sm-12 mx-auto">
+                                    <span href="{{ train.image.url }}" class="page-gallery" title="Mobility Services Strategy">
+                                        <img src="{{ train.image.url }}" alt="">
+                                    </span>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="row">
+                            <div class="home-services-item text-center">
+                                <h1>{{ train.name }}</h1>
+                                <h1> From  {{ train.source }} to {{ train.destination }}</h1>
+                                <h1> Ticket Time: {{ train.time }}</h1>
+                                <h3> Price: {{ train.price }}</h3>
+                                <h5> Empty Seats:
+                                    {% if train.seats_available >= 2 %}
+                                        <span class="badge badge-pill badge-success p-2">{{ train.seats_available }}</span>
+                                    {% elif train.seats_available == 1 %}
+                                        <span class="badge badge-pill badge-warning p-2">{{ train.seats_available }}</span>
+                                    {% else %}
+                                        <span class="badge badge-pill badge-success p-2"> 0 </span>
+                                    {% endif %}
+                                </h5>
+                            </div>
+                        </div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</section>
+{% endblock %}

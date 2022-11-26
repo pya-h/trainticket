@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 # Create your models here.
@@ -10,6 +11,10 @@ class Train(models.Model):
     time = models.TimeField(auto_now=False, auto_now_add=False)
     price = models.FloatField(default=120)
     seats_available = models.IntegerField()
+    image = models.ImageField(upload_to='photos/tickets', null=True, blank=True)
+
+    def url(self):
+        return reverse('train_id', args=[self.id,])
 
 
 class Person(models.Model):
