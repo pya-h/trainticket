@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block page %}
+	<section class="page">
+		<div class="cover" data-image="{% static 'images/photos/1.jpg' %}">
+			<div class="page-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<h1>Train Search</h1>
+						</div>
+						<div class="col-lg-12">
+							<ol class="breadcrumb">
+								<li> Search </li>
+								<li class="active">Results</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="page-bottom pbottom-70">
+			<div class="container">
+				<div class="row">
+                    {% include 'common/toast.html' %}
+                    {% if trains %}
+                        {% for train in trains %}
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <a href="{{ train.url }}" class="home-services-item  text-center">
+                                    <i class="fa fa-connectdevelop"></i>
+                                    <h4 class="services-title">{{ train.name }}</h4>
+                                    <h5> From {{ train.source }} to {{ train.destination }}</h5>
+                                    <h5> Ticket Time: {{ train.time }}</h5>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <h5 class="text-center mx-auto">There's no train available for now!</h5>
+                    {% endif %}
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block page %}
+        <section class="page">
+            <div class="cover" data-image="{%  static 'images/photos/2.jpg' %}">
+                <div class="page-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1>Search Trains</h1>
+                            </div>
+                            <div class="col-lg-12">
+                                <ol class="breadcrumb">
+                                    <li>Search</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <h5 class="mbottom-30">Search trains</h5>
+                            <div class="contact-text">
+                                <p>
+                                    Here you can find your desired trains by their source, destination and due date...
+                                </p>
+                            </div>
+                            <hr />
+                            <h5 class="mbottom-30">Note:</h5>
+                            <div class="contact-text">
+                                <p>
+                                    All parameters are optional and you can filter trains by any parameter(or parameters) you like!
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8 col-md-6 col-sm-12">
+                            {% include 'common/toast.html' %}
+                            <form action="{% url 'search' %}" method="post">
+                                {% csrf_token %}
+                                <div class="compact-form">
+                                    <div class="row">
+                                        <div class="row">
+                                            <label>
+                                                Source:
+                                                <input
+                                                    type="text" name="source"
+                                                    placeholder="Enter train's source"
+                                                />
+                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <label>
+                                                Destination:
+                                                <input type="text" name="destination"
+                                                    placeholder="Enter train's destination" />
+                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <label>
+                                                Ticket date starting from:
+
+                                                <div class="row">
+
+                                                    <div class="col-6">
+                                                        <input type="date" name="start_date" >
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="time" name="start_time" >
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <label>
+                                                Ticket date untill:
+                                                <div class="row">
+
+                                                    <div class="col-6">
+                                                        <input type="date" name="end_date" >
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="time" name="end_time" >
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="col-lg-12 text-center">
+                                            <button type="submit"
+                                                class="btn-secondary btn btn-lg btn-block w-50"
+                                            >
+                                                Search
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
