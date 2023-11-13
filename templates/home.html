@@ -30,11 +30,11 @@
                     {% if trains %}
                         {% for train in trains %}
                             <div class="col-lg-4 col-md-6 col-sm-12">
-                                <a href="{{ train.url }}" class="home-services-item  text-center">
+                                <a href="{{ train.url }}" class="train-item text-center">
                                     <i class="fa fa-connectdevelop"></i>
-                                    <h4 class="services-title">{{ train.name }}</h4>
-                                    <h5> From {{ train.source }} to {{ train.destination }}</h5>
-                                    <h5> Ticket Time: {{ train.time }}</h5>
+                                    <h4 class="train-item-title">{{ train.name }}</h4>
+                                    <h5 class="train-item-title"> From {{ train.source }} to {{ train.destination }}</h5>
+                                    <h5 class="train-item-title"> Ticket Time: {{ train.time }}</h5>
                                 </a>
                             </div>
                         {% endfor %}

@@ -30,7 +30,7 @@
 
                         <li><a href="{% url 'about-us' %}">ABOUT US</a></li>
                         <li>
-                            <a href="{% url 'contact-us' %}" class="btn-nav-line">CONTACT</a>
+                            <a href="{% url 'contact-us' %}" class="btn-nav-line {%if request.path == '/contact/'%}btn-nav-line-selected{%endif%}">CONTACT</a>
                         </li>
                     </ul>
                     <a class="menu-trigger">

@@ -36,12 +36,10 @@
                             </div>
                         {% endif %}
                         <div class="row">
-                            <div class="home-services-item text-center">
-                                <h1>{{ train.name }}</h1>
-                                <h1> From  {{ train.source }} to {{ train.destination }}</h1>
-                                <h1> Ticket Time: {{ train.time }}</h1>
-                                <h3> Price: {{ train.price }}</h3>
-                                <h5> Empty Seats:
+                            <div class="train-item text-left">
+                                <p class="train-item-title" style="font-size:25px !important;">{{ train.name }}</p>
+                                <p class="train-item-title" style="font-size:25px !important;"> Price: {{ train.price }}</p>
+                                <p class="train-item-title" style="font-size:25px !important;"> Empty Seats:
                                     {% if train.seats_available >= 2 %}
                                         <span class="badge bg-success p-2">{{ train.seats_available }}</span>
                                     {% elif train.seats_available == 1 %}
@@ -49,7 +47,10 @@
                                     {% else %}
                                         <span class="badge  bg-danger p-2"> 0 </span>
                                     {% endif %}
-                                </h5>
+                                </p>
+                                <p class="train-item-title" style="font-size:25px !important;"> From  {{ train.source }} to {{ train.destination }}</p>
+                                <p class="train-item-title" style="font-size:25px !important;"> Ticket Time: {{ train.time }}</p>
+
                             </div>
                             <form action="{% url 'book' %}" method="post">
                                 {% csrf_token %}
@@ -60,9 +61,9 @@
                                 <div class="row">
 
                                     {% if train.seats_available %}
-                                    <button class="btn btn-large btn-block btn-success" type="submit" name="order">Order</button>
+                                        <button class="btn btn-large btn-block btn-success" type="submit" name="order">Order</button>
                                     {% else %}
-                                    <button disabled="true" class="btn btn-large btn-block btn-secondary" type="submit" name="order">Order</button>
+                                        <button disabled="true" class="btn btn-large btn-block btn-secondary" type="submit" name="order">Order</button>
                                     {% endif %}
                                 </di☻v>
                             </fo☻rm>
