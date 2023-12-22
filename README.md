@@ -1,6 +1,10 @@
 # TrainTicket
 Webite written for sell/buy train station/railway tickets.
 
+#Demo
+    Running on: https://peach-sheer-drop.glitch.me
+    * Note: its on glitch Free Account. so The web app may be sleep.
+    Wait a few seconds, so that glitch wakes the server up.
 # Language: HTML/CSS/Python-Django
 Frontend is pure html/css/js and backend is imlemented by django framework.
 
