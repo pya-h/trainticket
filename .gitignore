@@ -1,5 +1,6 @@
+venv
+media
 public
 env
 .vscode
-media
 __pycache__
